@@ -11,11 +11,12 @@ Promise.all([
 	fetch("/nav/nav.css").then((Data) => Data.text())
 ])
 	.then(([Js,Html,Css]) => {
-
-		let content = "<style>/n"+Css+"</style>/n"+Html+"<script>/n"+Js+"</script>";
+		let navContainer = document.createElement("div");
+		document.body.prepend(navContainer);
+		let content = "<style>\n"+Css+"</style>\n"+Html+"<script>\n"+Js+"</script>";
 
 		//create shadow
-		let shadow = document.body.attachShadow({mode: "open"});
+		let shadow = navContainer.attachShadow({mode: "open"});
 		shadow.innerHTML = content;
 	})
 	.catch((error) => console.log(error))
