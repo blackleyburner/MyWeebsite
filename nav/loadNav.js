@@ -12,10 +12,10 @@ Promise.all([
 ])
 	.then(([Js,Html,Css]) => {
 
-		let content = Js + Html + Css;
+		let content = "<style>/n"+Css+"</style>/n"+Html+"<script>/n"+Js+"</script>";
 
 		//create shadow
 		let shadow = document.body.attachShadow({mode: "open"});
 		shadow.innerHTML = content;
 	})
-	.catch((error) => alert(error))
+	.catch((error) => console.log(error))
